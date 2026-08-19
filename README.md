@@ -1,6 +1,6 @@
-# londxz.dev
+# londxz
 
-Personal portfolio of Rodion Kholodov, an iOS developer working with Swift, UIKit, SwiftUI, mobile architecture, testing and CI.
+Personal portfolio of Rodion Kholodov, an iOS developer working with Swift, UIKit and SwiftUI, with an active interest in AI and backend development with Go.
 
 ## Stack
 
@@ -29,4 +29,4 @@ npm run build
 - `app/globals.css` - themes, responsive layout and liquid-glass system
 - `public/` - portrait, CV, favicon and SEO files
 
-Production: [londxz.dev](https://londxz.dev)
+Production: [londxz](https://londxz.dev)

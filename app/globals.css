@@ -421,8 +421,8 @@ h1 span {
   height: 100%;
   border-radius: 33px;
   object-fit: cover;
-  object-position: 50% 35%;
-  filter: grayscale(1) contrast(1.05);
+  object-position: 86% 50%;
+  filter: contrast(1.02);
 }
 
 .floating-badge {

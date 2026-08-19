@@ -3,34 +3,34 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://londxz.dev"),
-  title: "Rodion Kholodov — iOS Developer",
+  title: "Родион Холодов — iOS-разработчик",
   description:
-    "Portfolio of Rodion Kholodov, an iOS developer building reliable products with Swift, UIKit and SwiftUI.",
-  keywords: ["Rodion Kholodov", "londxz", "iOS developer", "Swift", "SwiftUI", "UIKit"],
+    "Портфолио Родиона Холодова — iOS-разработчика с сильной мобильной экспертизой и интересом к AI и backend-разработке на Go.",
+  keywords: ["Родион Холодов", "londxz", "iOS-разработчик", "Swift", "SwiftUI", "UIKit", "Go", "AI"],
   authors: [{ name: "Rodion Kholodov", url: "https://londxz.dev" }],
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Rodion Kholodov — iOS Developer",
-    description: "Swift, UIKit and SwiftUI. Thoughtful interfaces, architecture, testing and CI.",
+    title: "Родион Холодов — iOS-разработчик",
+    description: "Сильная iOS-разработка на Swift, UIKit и SwiftUI. Интерес к AI и backend на Go.",
     url: "https://londxz.dev",
-    siteName: "londxz.dev",
+    siteName: "londxz",
     type: "website",
-    locale: "en_US",
+    locale: "ru_RU",
     images: [
       {
         url: "/og.png",
-        width: 1729,
+        width: 1728,
         height: 910,
-        alt: "Rodion Kholodov — iOS Developer",
+        alt: "Родион Холодов — iOS-разработчик",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rodion Kholodov — iOS Developer",
-    description: "Swift, UIKit and SwiftUI. Thoughtful interfaces, architecture, testing and CI.",
+    title: "Родион Холодов — iOS-разработчик",
+    description: "Сильная iOS-разработка на Swift, UIKit и SwiftUI. Интерес к AI и backend на Go.",
     images: ["/og.png"],
   },
   icons: {
@@ -52,7 +52,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ru" data-theme="light" suppressHydrationWarning>
       <body>{children}</body>
     </html>
   );

@@ -6,28 +6,28 @@ import { contactLinks, content, type Language } from "./content";
 type Theme = "dark" | "light";
 
 export default function Portfolio() {
-  const [language, setLanguage] = useState<Language>("en");
-  const [theme, setTheme] = useState<Theme>("dark");
+  const [language, setLanguage] = useState<Language>("ru");
+  const [theme, setTheme] = useState<Theme>("light");
   const [activeSection, setActiveSection] = useState("top");
   const [menuOpen, setMenuOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const copy = useMemo(() => content[language], [language]);
 
   useEffect(() => {
-    const storedLanguage = window.localStorage.getItem("language") as Language | null;
-    const storedTheme = window.localStorage.getItem("theme") as Theme | null;
-    setLanguage(storedLanguage === "ru" ? "ru" : "en");
-    setTheme(storedTheme === "light" || storedTheme === "dark" ? storedTheme : "dark");
+    const storedLanguage = window.localStorage.getItem("language-v2") as Language | null;
+    const storedTheme = window.localStorage.getItem("theme-v2") as Theme | null;
+    setLanguage(storedLanguage === "en" ? "en" : "ru");
+    setTheme(storedTheme === "light" || storedTheme === "dark" ? storedTheme : "light");
   }, []);
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
-    window.localStorage.setItem("theme", theme);
+    window.localStorage.setItem("theme-v2", theme);
   }, [theme]);
 
   useEffect(() => {
     document.documentElement.lang = language;
-    window.localStorage.setItem("language", language);
+    window.localStorage.setItem("language-v2", language);
   }, [language]);
 
   useEffect(() => {
@@ -106,21 +106,21 @@ export default function Portfolio() {
 
       <aside className={`sidebar glass-panel ${menuOpen ? "menu-open" : ""}`}>
         <div className="sidebar-head">
-          <a className="brand" href="#top" aria-label="londxz.dev home" onClick={() => { setActiveSection("top"); setMenuOpen(false); }}>
-            londxz<span>.dev</span>
+          <a className="brand" href="#top" aria-label="londxz — на главную" onClick={() => { setActiveSection("top"); setMenuOpen(false); }}>
+            londxz
           </a>
           <button
             className="menu-toggle control-button"
             type="button"
             aria-expanded={menuOpen}
-            aria-label={menuOpen ? "Close navigation" : "Open navigation"}
+            aria-label={menuOpen ? (language === "ru" ? "Закрыть навигацию" : "Close navigation") : (language === "ru" ? "Открыть навигацию" : "Open navigation")}
             onClick={() => setMenuOpen((value) => !value)}
           >
-            {menuOpen ? "Close" : "Menu"}
+            {menuOpen ? (language === "ru" ? "Закрыть" : "Close") : (language === "ru" ? "Меню" : "Menu")}
           </button>
         </div>
 
-        <nav className="side-nav" aria-label="Primary navigation">
+        <nav className="side-nav" aria-label={language === "ru" ? "Основная навигация" : "Primary navigation"}>
           {copy.nav.map((item) => (
             <a
               className={activeSection === item.id ? "active" : ""}
@@ -194,7 +194,7 @@ export default function Portfolio() {
             <div className="portrait-glow" aria-hidden="true" />
             <div className="portrait-frame glass-panel">
               <img
-                src="/assets/rodion-kholodov.jpg"
+                src="/og.png"
                 alt={language === "en" ? "Rodion Kholodov speaking at a technology event" : "Родион Холодов выступает на технологическом мероприятии"}
                 width="640"
                 height="640"
@@ -343,7 +343,7 @@ export default function Portfolio() {
         <footer className="footer">
           <span>© {new Date().getFullYear()} Rodion Kholodov</span>
           <span>{copy.footer}</span>
-          <a href="#top">Back to top ↑</a>
+          <a href="#top">{language === "ru" ? "Наверх" : "Back to top"} ↑</a>
         </footer>
       </main>
     </div>

@@ -28,9 +28,9 @@ test("server-renders the portfolio", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>Rodion Kholodov/);
-  assert.match(html, /londxz\.dev/);
-  assert.match(html, /Rodion/);
-  assert.match(html, /iOS Developer/);
+  assert.match(html, /<title>Родион Холодов/);
+  assert.match(html, /londxz/);
+  assert.match(html, /Родион/);
+  assert.match(html, /iOS-разработчик/);
   assert.doesNotMatch(html, /codex-preview|loading skeleton/i);
 });
