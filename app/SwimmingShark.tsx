@@ -21,6 +21,7 @@ export default function SwimmingShark() {
     let anchoredRootPosition: import("three").Vector3 | null = null;
     let resizeObserver: ResizeObserver | null = null;
     let choreographyTimer = 0;
+    let biteScanTimer = 0;
 
     const start = async () => {
       const THREE = await import("three");
@@ -76,28 +77,24 @@ export default function SwimmingShark() {
           mixer = new THREE.AnimationMixer(model);
           const findClip = (...fragments: string[]) =>
             gltf.animations.find((clip) => fragments.some((fragment) => clip.name.toLowerCase().includes(fragment)));
-          const keepClipInPlace = (clip: import("three").AnimationClip | undefined) => {
+          const removeRootMotion = (clip: import("three").AnimationClip | undefined) => {
             if (!clip) return undefined;
             const inPlaceClip = clip.clone();
             inPlaceClip.tracks = inPlaceClip.tracks.filter(
-              (track) => {
-                const trackName = track.name.toLowerCase();
-                const property = trackName.split(".").at(-1);
-                return !trackName.includes("shark_root.4") && (property === "quaternion" || property === "rotation");
-              },
+              (track) => !track.name.toLowerCase().includes("shark_root.4"),
             );
             inPlaceClip.resetDuration();
             return inPlaceClip;
           };
           const swimming = findClip("swimming", "swim") ?? gltf.animations[0];
-          const circling = keepClipInPlace(findClip("circling", "circle"));
-          const biting = keepClipInPlace(findClip("biting", "bite", "bit"));
+          const biting = removeRootMotion(findClip("biting", "bite", "bit"));
 
-          if (swimming) {
+          if (swimming && biting) {
             const swimmingAction = mixer.clipAction(swimming);
-            const circlingAction = circling ? mixer.clipAction(circling) : null;
-            const bitingAction = biting ? mixer.clipAction(biting) : null;
+            const bitingAction = mixer.clipAction(biting);
             let currentAction = swimmingAction;
+            let biteInProgress = false;
+            let nextBiteAt = performance.now();
 
             const playSwimming = () => {
               host.dataset.sharkAction = "swimming";
@@ -110,43 +107,82 @@ export default function SwimmingShark() {
               currentAction = swimmingAction;
             };
 
-            const gestures = [
-              { action: circlingAction, clip: circling, repeats: 1, speed: 2.8, pause: 7_500 },
-              { action: bitingAction, clip: biting, repeats: 2, speed: 1.08, pause: 10_500 },
-              { action: bitingAction, clip: biting, repeats: 1, speed: 0.92, pause: 8_500 },
-            ].filter((gesture) => gesture.action && gesture.clip);
-            host.dataset.sharkGestures = gestures.map((gesture) => gesture.clip!.name.toLowerCase()).join(",");
-            let gestureIndex = 0;
+            host.dataset.sharkGestures = "swimming,bite";
 
-            const scheduleGesture = (delay: number) => {
+            const playBite = () => {
+              if (disposed || biteInProgress) return;
+              biteInProgress = true;
+              host.dataset.sharkAction = "biting";
+              host.dataset.sharkBitePhase = "opening";
+              bitingAction.reset();
+              bitingAction.paused = false;
+              bitingAction.clampWhenFinished = true;
+              bitingAction.setEffectiveTimeScale(1);
+              bitingAction.setLoop(THREE.LoopOnce, 1);
+              bitingAction.play();
+              bitingAction.crossFadeFrom(currentAction, 0.2, true);
+              currentAction = bitingAction;
+
               window.clearTimeout(choreographyTimer);
               choreographyTimer = window.setTimeout(() => {
-                if (disposed || gestures.length === 0) return;
-                const gesture = gestures[gestureIndex % gestures.length];
-                gestureIndex += 1;
-                const action = gesture.action!;
-                const clip = gesture.clip!;
-
-                host.dataset.sharkAction = clip.name.toLowerCase();
-                action.reset();
-                action.clampWhenFinished = true;
-                action.setEffectiveTimeScale(gesture.speed);
-                action.setLoop(gesture.repeats === 1 ? THREE.LoopOnce : THREE.LoopRepeat, gesture.repeats);
-                action.play();
-                action.crossFadeFrom(currentAction, 0.55, true);
-                currentAction = action;
-
-                const gestureDuration = Math.max((clip.duration * gesture.repeats * 1000) / gesture.speed, 1_200);
+                if (disposed) return;
+                bitingAction.time = Math.min(0.43, biting.duration * 0.43);
+                bitingAction.paused = true;
+                host.dataset.sharkBitePhase = "hold";
                 choreographyTimer = window.setTimeout(() => {
                   if (disposed) return;
-                  playSwimming();
-                  scheduleGesture(gesture.pause);
-                }, Math.max(gestureDuration - 450, 750));
-              }, delay);
+                  bitingAction.paused = false;
+                  bitingAction.setEffectiveTimeScale(0.75);
+                  host.dataset.sharkBitePhase = "closing";
+                  choreographyTimer = window.setTimeout(() => {
+                    if (disposed) return;
+                    playSwimming();
+                    host.dataset.sharkBitePhase = "idle";
+                    delete host.dataset.sharkTarget;
+                    biteInProgress = false;
+                    nextBiteAt = performance.now() + 6_000;
+                  }, 760);
+                }, 650);
+              }, 430);
             };
 
             playSwimming();
-            scheduleGesture(6_500);
+            host.dataset.sharkBitePhase = "idle";
+            biteScanTimer = window.setInterval(() => {
+              const sharkRect = host.getBoundingClientRect();
+              const canvas = host.querySelector("canvas");
+              const facingMatrix = canvas ? new DOMMatrixReadOnly(getComputedStyle(canvas).transform) : null;
+              const travelDirection: "left" | "right" = facingMatrix && facingMatrix.a < 0 ? "left" : "right";
+              host.dataset.sharkDirection = travelDirection;
+              if (disposed || biteInProgress || performance.now() < nextBiteAt) return;
+
+              const mouthX = travelDirection === "right"
+                ? sharkRect.right - sharkRect.width * 0.06
+                : sharkRect.left + sharkRect.width * 0.06;
+              const mouthY = sharkRect.top + sharkRect.height * 0.5;
+              const targets = Array.from(document.querySelectorAll<HTMLElement>(
+                ".glass-card, .glass-chip, .button-glass, .sidebar",
+              )).filter((target) => !target.closest(".portrait-stage"));
+              const target = targets.find((candidate) => {
+                const rect = candidate.getBoundingClientRect();
+                const closeOnX = mouthX >= rect.left - 16 && mouthX <= rect.right + 16;
+                const closeOnY = mouthY >= rect.top - 28 && mouthY <= rect.bottom + 28;
+                const mouthOnScreen = mouthX >= 0 && mouthX <= window.innerWidth;
+                const onScreen = rect.bottom > 0 && rect.top < window.innerHeight;
+                return closeOnX && closeOnY && mouthOnScreen && onScreen;
+              });
+
+              if (target) {
+                host.dataset.sharkTarget = target.classList.contains("sidebar")
+                  ? "sidebar"
+                  : target.classList.contains("glass-chip")
+                    ? "chip"
+                    : target.classList.contains("button-glass")
+                      ? "button"
+                      : "card";
+                playBite();
+              }
+            }, 120);
           }
           setReady(true);
         },
@@ -191,6 +227,7 @@ export default function SwimmingShark() {
       disposed = true;
       window.clearTimeout(timer);
       window.clearTimeout(choreographyTimer);
+      window.clearInterval(biteScanTimer);
       window.cancelAnimationFrame(frame);
       resizeObserver?.disconnect();
       mixer?.stopAllAction();
