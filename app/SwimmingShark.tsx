@@ -17,6 +17,7 @@ export default function SwimmingShark() {
     let mixer: AnimationMixer | null = null;
     let model: Object3D | null = null;
     let resizeObserver: ResizeObserver | null = null;
+    let choreographyTimer = 0;
 
     const start = async () => {
       const THREE = await import("three");
@@ -62,8 +63,64 @@ export default function SwimmingShark() {
           scene.add(model);
 
           mixer = new THREE.AnimationMixer(model);
-          const swimming = gltf.animations.find((clip) => clip.name.toLowerCase() === "swimming") ?? gltf.animations[0];
-          if (swimming) mixer.clipAction(swimming).play();
+          const findClip = (...fragments: string[]) =>
+            gltf.animations.find((clip) => fragments.some((fragment) => clip.name.toLowerCase().includes(fragment)));
+          const swimming = findClip("swimming", "swim") ?? gltf.animations[0];
+          const circling = findClip("circling", "circle");
+          const biting = findClip("biting", "bite", "bit");
+
+          if (swimming) {
+            const swimmingAction = mixer.clipAction(swimming);
+            const circlingAction = circling ? mixer.clipAction(circling) : null;
+            const bitingAction = biting ? mixer.clipAction(biting) : null;
+            let currentAction = swimmingAction;
+
+            const playSwimming = () => {
+              swimmingAction.reset();
+              swimmingAction.clampWhenFinished = false;
+              swimmingAction.setEffectiveTimeScale(1);
+              swimmingAction.setLoop(THREE.LoopRepeat, Infinity);
+              swimmingAction.play();
+              if (currentAction !== swimmingAction) swimmingAction.crossFadeFrom(currentAction, 0.55, true);
+              currentAction = swimmingAction;
+            };
+
+            const gestures = [
+              { action: circlingAction, clip: circling, repeats: 1, speed: 0.9, pause: 7_500 },
+              { action: bitingAction, clip: biting, repeats: 2, speed: 1.08, pause: 10_500 },
+              { action: bitingAction, clip: biting, repeats: 1, speed: 0.92, pause: 8_500 },
+            ].filter((gesture) => gesture.action && gesture.clip);
+            let gestureIndex = 0;
+
+            const scheduleGesture = (delay: number) => {
+              window.clearTimeout(choreographyTimer);
+              choreographyTimer = window.setTimeout(() => {
+                if (disposed || gestures.length === 0) return;
+                const gesture = gestures[gestureIndex % gestures.length];
+                gestureIndex += 1;
+                const action = gesture.action!;
+                const clip = gesture.clip!;
+
+                action.reset();
+                action.clampWhenFinished = true;
+                action.setEffectiveTimeScale(gesture.speed);
+                action.setLoop(gesture.repeats === 1 ? THREE.LoopOnce : THREE.LoopRepeat, gesture.repeats);
+                action.play();
+                action.crossFadeFrom(currentAction, 0.55, true);
+                currentAction = action;
+
+                const gestureDuration = Math.max((clip.duration * gesture.repeats * 1000) / gesture.speed, 1_200);
+                choreographyTimer = window.setTimeout(() => {
+                  if (disposed) return;
+                  playSwimming();
+                  scheduleGesture(gesture.pause);
+                }, Math.max(gestureDuration - 450, 750));
+              }, delay);
+            };
+
+            playSwimming();
+            scheduleGesture(6_500);
+          }
           setReady(true);
         },
         undefined,
@@ -100,6 +157,7 @@ export default function SwimmingShark() {
     return () => {
       disposed = true;
       window.clearTimeout(timer);
+      window.clearTimeout(choreographyTimer);
       window.cancelAnimationFrame(frame);
       resizeObserver?.disconnect();
       mixer?.stopAllAction();
