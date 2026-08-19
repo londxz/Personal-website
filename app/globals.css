@@ -387,7 +387,8 @@ h1 span {
 .portrait-stage {
   position: relative;
   justify-self: center;
-  width: min(100%, 600px);
+  width: min(145%, 780px);
+  margin-left: -14%;
 }
 
 .portrait-glow {
@@ -446,6 +447,8 @@ h1 span {
   object-fit: contain;
   object-position: center bottom;
   filter: contrast(1.02);
+  transform: scale(1.12);
+  transform-origin: center bottom;
 }
 
 .floating-badge {
@@ -1129,7 +1132,8 @@ h1 span {
   }
 
   .portrait-stage {
-    width: min(86vw, 460px);
+    width: min(100vw, 520px);
+    margin-left: -4vw;
   }
 
   .badge-top {
