@@ -83,15 +83,16 @@ export default function SwimmingShark() {
       resizeObserver.observe(host);
       resize();
 
-      const clock = new THREE.Clock();
-      const render = () => {
+      let previousTime = performance.now();
+      const render = (time: number) => {
         if (disposed || !renderer) return;
         frame = window.requestAnimationFrame(render);
-        const delta = Math.min(clock.getDelta(), 0.05);
+        const delta = Math.min((time - previousTime) / 1000, 0.05);
+        previousTime = time;
         mixer?.update(delta);
         renderer.render(scene, camera);
       };
-      render();
+      frame = window.requestAnimationFrame(render);
     };
 
     const timer = window.setTimeout(start, 650);
