@@ -16,6 +16,9 @@ export default function SwimmingShark() {
     let renderer: WebGLRenderer | null = null;
     let mixer: AnimationMixer | null = null;
     let model: Object3D | null = null;
+    let stage: Object3D | null = null;
+    let animatedRoot: Object3D | null = null;
+    let anchoredRootPosition: import("three").Vector3 | null = null;
     let resizeObserver: ResizeObserver | null = null;
     let choreographyTimer = 0;
 
@@ -29,8 +32,10 @@ export default function SwimmingShark() {
 
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(32, 2.4, 0.1, 100);
-      camera.position.set(-7.4, 1.1, 0);
+      camera.position.set(-8.3, 1.1, 0);
       camera.lookAt(0, 0, 0);
+      const currentRootPosition = new THREE.Vector3();
+      const rootCorrection = new THREE.Vector3();
 
       renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: "low-power" });
       renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -60,14 +65,33 @@ export default function SwimmingShark() {
           const center = box.getCenter(new THREE.Vector3());
           model.position.sub(center);
           model.scale.setScalar(6.6 / Math.max(size.x, size.y, size.z));
-          scene.add(model);
+          stage = new THREE.Group();
+          stage.add(model);
+          scene.add(stage);
+
+          animatedRoot = model.getObjectByName("shark_root.4") ?? null;
+          scene.updateMatrixWorld(true);
+          anchoredRootPosition = animatedRoot?.getWorldPosition(new THREE.Vector3()) ?? null;
 
           mixer = new THREE.AnimationMixer(model);
           const findClip = (...fragments: string[]) =>
             gltf.animations.find((clip) => fragments.some((fragment) => clip.name.toLowerCase().includes(fragment)));
+          const keepClipInPlace = (clip: import("three").AnimationClip | undefined) => {
+            if (!clip) return undefined;
+            const inPlaceClip = clip.clone();
+            inPlaceClip.tracks = inPlaceClip.tracks.filter(
+              (track) => {
+                const trackName = track.name.toLowerCase();
+                const property = trackName.split(".").at(-1);
+                return !trackName.includes("shark_root.4") && (property === "quaternion" || property === "rotation");
+              },
+            );
+            inPlaceClip.resetDuration();
+            return inPlaceClip;
+          };
           const swimming = findClip("swimming", "swim") ?? gltf.animations[0];
-          const circling = findClip("circling", "circle");
-          const biting = findClip("biting", "bite", "bit");
+          const circling = keepClipInPlace(findClip("circling", "circle"));
+          const biting = keepClipInPlace(findClip("biting", "bite", "bit"));
 
           if (swimming) {
             const swimmingAction = mixer.clipAction(swimming);
@@ -76,6 +100,7 @@ export default function SwimmingShark() {
             let currentAction = swimmingAction;
 
             const playSwimming = () => {
+              host.dataset.sharkAction = "swimming";
               swimmingAction.reset();
               swimmingAction.clampWhenFinished = false;
               swimmingAction.setEffectiveTimeScale(1);
@@ -86,10 +111,11 @@ export default function SwimmingShark() {
             };
 
             const gestures = [
-              { action: circlingAction, clip: circling, repeats: 1, speed: 0.9, pause: 7_500 },
+              { action: circlingAction, clip: circling, repeats: 1, speed: 2.8, pause: 7_500 },
               { action: bitingAction, clip: biting, repeats: 2, speed: 1.08, pause: 10_500 },
               { action: bitingAction, clip: biting, repeats: 1, speed: 0.92, pause: 8_500 },
             ].filter((gesture) => gesture.action && gesture.clip);
+            host.dataset.sharkGestures = gestures.map((gesture) => gesture.clip!.name.toLowerCase()).join(",");
             let gestureIndex = 0;
 
             const scheduleGesture = (delay: number) => {
@@ -101,6 +127,7 @@ export default function SwimmingShark() {
                 const action = gesture.action!;
                 const clip = gesture.clip!;
 
+                host.dataset.sharkAction = clip.name.toLowerCase();
                 action.reset();
                 action.clampWhenFinished = true;
                 action.setEffectiveTimeScale(gesture.speed);
@@ -147,6 +174,12 @@ export default function SwimmingShark() {
         const delta = Math.min((time - previousTime) / 1000, 0.05);
         previousTime = time;
         mixer?.update(delta);
+        if (stage && animatedRoot && anchoredRootPosition) {
+          scene.updateMatrixWorld(true);
+          animatedRoot.getWorldPosition(currentRootPosition);
+          rootCorrection.copy(anchoredRootPosition).sub(currentRootPosition);
+          stage.position.add(rootCorrection);
+        }
         renderer.render(scene, camera);
       };
       frame = window.requestAnimationFrame(render);
