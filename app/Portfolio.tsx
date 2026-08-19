@@ -192,7 +192,7 @@ export default function Portfolio() {
 
           <div className="portrait-stage hero-enter hero-enter-late" aria-label={copy.hero.role}>
             <div className="portrait-glow" aria-hidden="true" />
-            <div className="portrait-frame glass-panel">
+            <div className="portrait-frame">
               <img
                 src="/og.png"
                 alt={language === "en" ? "Rodion Kholodov speaking at a technology event" : "Родион Холодов выступает на технологическом мероприятии"}
