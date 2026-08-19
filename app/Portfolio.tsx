@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { contactLinks, content, type Language } from "./content";
+import SwimmingShark from "./SwimmingShark";
 
 type Theme = "dark" | "light";
 
@@ -103,6 +104,7 @@ export default function Portfolio() {
       <div className="ambient ambient-one" aria-hidden="true" />
       <div className="ambient ambient-two" aria-hidden="true" />
       <div className="cursor-light" aria-hidden="true" />
+      <SwimmingShark />
 
       <aside className={`sidebar glass-panel ${menuOpen ? "menu-open" : ""}`}>
         <div className="sidebar-head">

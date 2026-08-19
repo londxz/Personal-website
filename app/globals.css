@@ -128,6 +128,61 @@ a {
   opacity: 0.08;
 }
 
+.shark-swimmer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: clamp(300px, 33vw, 560px);
+  aspect-ratio: 2.45 / 1;
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+  transition: opacity 1.2s ease;
+}
+
+.shark-swimmer.is-ready {
+  opacity: 0.42;
+  animation: shark-swim-path 42s linear -8s infinite;
+}
+
+.shark-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  filter: grayscale(1) brightness(1.35) contrast(0.92) drop-shadow(0 18px 26px rgba(0, 0, 0, 0.28));
+}
+
+:root[data-theme="light"] .shark-swimmer.is-ready {
+  opacity: 0.38;
+}
+
+:root[data-theme="light"] .shark-canvas {
+  filter: grayscale(1) brightness(0.6) contrast(1.18) drop-shadow(0 18px 26px rgba(20, 20, 16, 0.16));
+}
+
+@keyframes shark-swim-path {
+  0% {
+    transform: translate3d(-42vw, 68vh, 0) rotate(-2deg);
+  }
+
+  24% {
+    transform: translate3d(6vw, 52vh, 0) rotate(2deg);
+  }
+
+  52% {
+    transform: translate3d(48vw, 22vh, 0) rotate(-2deg);
+  }
+
+  76% {
+    transform: translate3d(88vw, 47vh, 0) rotate(1deg);
+  }
+
+  100% {
+    transform: translate3d(132vw, 16vh, 0) rotate(-2deg);
+  }
+}
+
 .glass-panel,
 .glass-chip,
 .button-glass {
@@ -268,6 +323,8 @@ a {
 }
 
 .main-content {
+  position: relative;
+  z-index: 1;
   margin-left: 278px;
 }
 
@@ -1090,6 +1147,15 @@ h1 span {
 }
 
 @media (max-width: 760px) {
+  .shark-swimmer {
+    width: min(76vw, 350px);
+  }
+
+  .shark-swimmer.is-ready {
+    opacity: 0.28;
+    animation-duration: 36s;
+  }
+
   .sidebar {
     display: block;
     padding: 11px 12px 11px 17px;
@@ -1281,6 +1347,10 @@ h1 span {
   }
 
   .cursor-light {
+    display: none;
+  }
+
+  .shark-swimmer {
     display: none;
   }
 }

@@ -35,6 +35,7 @@ test("server-renders the portfolio", async () => {
   assert.match(html, /iOS · AI/);
   assert.doesNotMatch(html, /iOS · AI · Go/);
   assert.match(html, /rodion-kholodov-photoroom-retina\.png/);
+  assert.match(html, /shark-swimmer/);
   assert.match(html, /<section[^>]*id="top"[^>]*data-section/);
   assert.doesNotMatch(html, /codex-preview|loading skeleton/i);
 });
