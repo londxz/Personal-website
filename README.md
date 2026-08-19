@@ -2,6 +2,8 @@
 
 Personal portfolio of Rodion Kholodov, an iOS developer working with Swift, UIKit and SwiftUI, with an active interest in AI and backend development with Go.
 
+> Current status: this repository contains the initial skeleton of the portfolio. Content, projects and visual details will continue to evolve.
+
 ## Stack
 
 - React and TypeScript
