@@ -30,14 +30,12 @@ export type SiteContent = {
     eyebrow: string;
     role: string;
     lead: string;
-    projects: string;
+    experienceCta: string;
     cv: string;
     nowLabel: string;
     nowValue: string;
     workExperienceLabel: string;
     workExperienceValue: string;
-    locationLabel: string;
-    locationValue: string;
     experienceLabel: string;
     experienceValue: string;
     focusLabel: string;
@@ -94,14 +92,12 @@ export const content: Record<Language, SiteContent> = {
       eyebrow: "iOS Developer · AI-powered mobile products",
       role: "Rodion Kholodov",
       lead: "My focus is iOS: Swift, UIKit and SwiftUI. I use AI in mobile development and grow at the intersection of iOS and AI; in my free time, I build backend projects with Go.",
-      projects: "View projects",
+      experienceCta: "View work experience",
       cv: "Download CV",
       nowLabel: "Now",
       nowValue: "Yandex · iOS",
       workExperienceLabel: "Work experience",
       workExperienceValue: "2024 — present",
-      locationLabel: "Based in",
-      locationValue: "Moscow, Russia",
       experienceLabel: "Experience",
       experienceValue: "iOS · AI",
       focusLabel: "Priority",
@@ -239,14 +235,12 @@ export const content: Record<Language, SiteContent> = {
       eyebrow: "iOS-разработчик · AI в мобильных продуктах",
       role: "Родион Холодов",
       lead: "Мой главный фокус — iOS: Swift, UIKit и SwiftUI. Использую AI в мобильной разработке и развиваюсь на стыке iOS и AI; в свободное время пишу backend на Go.",
-      projects: "Смотреть проекты",
+      experienceCta: "Смотреть опыт работы",
       cv: "Скачать резюме",
       nowLabel: "Сейчас",
       nowValue: "Яндекс · iOS",
       workExperienceLabel: "Опыт работы",
       workExperienceValue: "2024 — сейчас",
-      locationLabel: "Город",
-      locationValue: "Москва, Россия",
       experienceLabel: "Опыт",
       experienceValue: "iOS · AI",
       focusLabel: "Приоритет",

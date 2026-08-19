@@ -172,8 +172,8 @@ export default function Portfolio() {
             <p className="hero-lead">{copy.hero.lead}</p>
 
             <div className="hero-actions">
-              <a className="button button-primary" href="#projects">
-                {copy.hero.projects} <span aria-hidden="true">↘</span>
+              <a className="button button-primary" href="#experience">
+                {copy.hero.experienceCta} <span aria-hidden="true">↘</span>
               </a>
               <a className="button button-glass" href="/Rodion-Kholodov-CV.pdf" target="_blank" rel="noreferrer">
                 {copy.hero.cv} <span aria-hidden="true">↓</span>
@@ -188,10 +188,6 @@ export default function Portfolio() {
               <div className="glass-chip">
                 <span className="chip-label">{copy.hero.workExperienceLabel}</span>
                 <strong>{copy.hero.workExperienceValue}</strong>
-              </div>
-              <div className="glass-chip">
-                <span className="chip-label">{copy.hero.locationLabel}</span>
-                <strong>{copy.hero.locationValue}</strong>
               </div>
             </div>
           </div>
