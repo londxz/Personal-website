@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://londxz.dev/sitemap.xml
