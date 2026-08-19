@@ -219,7 +219,7 @@ export const content: Record<Language, SiteContent> = {
       copied: "Copied!",
       cv: "Open CV",
     },
-    footer: "Designed and built by Rodion Kholodov.",
+    footer: "Like this site? Message me — I can build one for you.",
   },
   ru: {
     nav: [
@@ -362,7 +362,7 @@ export const content: Record<Language, SiteContent> = {
       copied: "Скопировано!",
       cv: "Открыть резюме",
     },
-    footer: "Дизайн и разработка - Родион Холодов.",
+    footer: "Понравился сайт? Напиши мне — сделаю и тебе.",
   },
 };
 

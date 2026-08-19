@@ -1085,6 +1085,19 @@ h1 span {
   font-size: 0.66rem;
 }
 
+.footer-cta {
+  color: var(--ink);
+  font-weight: 650;
+  transition: color 180ms ease, opacity 180ms ease;
+}
+
+.footer-cta:hover,
+.footer-cta:focus-visible {
+  color: var(--ink);
+  opacity: 0.72;
+  outline: none;
+}
+
 .not-found-page {
   display: grid;
   min-height: 100vh;
