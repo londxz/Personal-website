@@ -194,10 +194,10 @@ export default function Portfolio() {
             <div className="portrait-glow" aria-hidden="true" />
             <div className="portrait-frame">
               <img
-                src="/assets/rodion-kholodov-source-cutout.png"
+                src="/assets/rodion-kholodov-photoroom-crop.png"
                 alt={language === "en" ? "Rodion Kholodov speaking at a technology event" : "Родион Холодов выступает на технологическом мероприятии"}
-                width="389"
-                height="594"
+                width="405"
+                height="515"
               />
             </div>
             <div className="floating-badge badge-top glass-panel">
