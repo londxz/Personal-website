@@ -446,7 +446,7 @@ h1 span {
   border-radius: 0;
   object-fit: contain;
   object-position: center bottom;
-  filter: contrast(1.02);
+  filter: none;
   transform: scale(1.02);
   transform-origin: center bottom;
 }
@@ -455,10 +455,18 @@ h1 span {
   position: absolute;
   z-index: 3;
   display: grid;
-  gap: 5px;
-  min-width: 146px;
-  border-radius: 20px;
-  padding: 14px 16px;
+  gap: 8px;
+  min-width: 190px;
+  border-radius: 25px;
+  padding: 20px 22px;
+}
+
+.floating-badge span {
+  font-size: 0.64rem;
+}
+
+.floating-badge strong {
+  font-size: 0.86rem;
 }
 
 .badge-top {
@@ -1227,8 +1235,8 @@ h1 span {
   }
 
   .floating-badge {
-    min-width: 128px;
-    padding: 12px;
+    min-width: 152px;
+    padding: 14px 16px;
   }
 
   .stat-grid {
