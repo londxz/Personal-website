@@ -34,6 +34,8 @@ export type SiteContent = {
     cv: string;
     nowLabel: string;
     nowValue: string;
+    workExperienceLabel: string;
+    workExperienceValue: string;
     locationLabel: string;
     locationValue: string;
     experienceLabel: string;
@@ -82,9 +84,9 @@ export const content: Record<Language, SiteContent> = {
     nav: [
       { id: "top", label: "Home" },
       { id: "about", label: "About" },
-      { id: "experience", label: "Experience" },
+      { id: "experience", label: "Work experience" },
       { id: "skills", label: "Skills" },
-      { id: "projects", label: "Projects" },
+      { id: "projects", label: "Own projects" },
       { id: "contact", label: "Contact" },
     ],
     availability: "Responsibility. Results.",
@@ -96,6 +98,8 @@ export const content: Record<Language, SiteContent> = {
       cv: "Download CV",
       nowLabel: "Now",
       nowValue: "Yandex · iOS",
+      workExperienceLabel: "Work experience",
+      workExperienceValue: "2024 — present",
       locationLabel: "Based in",
       locationValue: "Moscow, Russia",
       experienceLabel: "Experience",
@@ -118,9 +122,9 @@ export const content: Record<Language, SiteContent> = {
       ],
     },
     experience: {
-      kicker: "Experience / 02",
+      kicker: "Commercial experience / 02",
       title: "Real products, measurable improvements.",
-      intro: "I take ownership of tasks and focus on outcomes that matter to users and the team.",
+      intro: "Commercial experience in product and research teams. I take ownership of tasks and focus on outcomes that matter to users and the team.",
       items: [
         {
           company: "Yandex · Maps SDK",
@@ -172,9 +176,9 @@ export const content: Record<Language, SiteContent> = {
       ],
     },
     projects: {
-      kicker: "Selected work / 04",
+      kicker: "Own projects / 04",
       title: "Products built to be used.",
-      intro: "Selected public projects from speech technology, communication, research and logistics.",
+      intro: "My public projects in speech technology, communication, research and logistics — separate from commercial work.",
       source: "View source",
       items: [
         {
@@ -225,9 +229,9 @@ export const content: Record<Language, SiteContent> = {
     nav: [
       { id: "top", label: "Главная" },
       { id: "about", label: "Обо мне" },
-      { id: "experience", label: "Опыт" },
+      { id: "experience", label: "Опыт работы" },
       { id: "skills", label: "Навыки" },
-      { id: "projects", label: "Проекты" },
+      { id: "projects", label: "Свои проекты" },
       { id: "contact", label: "Контакты" },
     ],
     availability: "Ответственность. Результат.",
@@ -239,6 +243,8 @@ export const content: Record<Language, SiteContent> = {
       cv: "Скачать резюме",
       nowLabel: "Сейчас",
       nowValue: "Яндекс · iOS",
+      workExperienceLabel: "Опыт работы",
+      workExperienceValue: "2024 — сейчас",
       locationLabel: "Город",
       locationValue: "Москва, Россия",
       experienceLabel: "Опыт",
@@ -261,9 +267,9 @@ export const content: Record<Language, SiteContent> = {
       ],
     },
     experience: {
-      kicker: "Опыт / 02",
+      kicker: "Коммерческий опыт / 02",
       title: "Реальные продукты и измеримые улучшения.",
-      intro: "Беру ответственность за задачи и фокусируюсь на результате, важном для пользователей и команды.",
+      intro: "Коммерческий опыт в продуктовых и исследовательских командах. Беру ответственность за задачи и фокусируюсь на результате, важном для пользователей и команды.",
       items: [
         {
           company: "Яндекс · SDK Карт",
@@ -315,9 +321,9 @@ export const content: Record<Language, SiteContent> = {
       ],
     },
     projects: {
-      kicker: "Избранные работы / 04",
+      kicker: "Собственные проекты / 04",
       title: "Продукты, которыми можно пользоваться.",
-      intro: "Публичные проекты на пересечении speech-технологий, коммуникаций, исследований и логистики.",
+      intro: "Мои публичные проекты на пересечении speech-технологий, коммуникаций, исследований и логистики — отдельно от коммерческой работы.",
       source: "Открыть код",
       items: [
         {

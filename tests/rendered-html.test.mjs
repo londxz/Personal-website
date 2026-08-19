@@ -33,6 +33,9 @@ test("server-renders the portfolio", async () => {
   assert.match(html, /Родион/);
   assert.match(html, /iOS-разработчик/);
   assert.match(html, /iOS · AI/);
+  assert.match(html, /Опыт работы/);
+  assert.match(html, /Коммерческий опыт/);
+  assert.match(html, /Собственные проекты/);
   assert.doesNotMatch(html, /iOS · AI · Go/);
   assert.match(html, /rodion-kholodov-photoroom-retina\.png/);
   assert.match(html, /shark-swimmer/);

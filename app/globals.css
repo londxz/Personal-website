@@ -550,10 +550,14 @@ h1 span {
 }
 
 .floating-badge span {
+  color: var(--ink);
   font-size: 0.64rem;
+  font-weight: 680;
+  opacity: 0.82;
 }
 
 .floating-badge strong {
+  color: var(--ink);
   font-size: 0.86rem;
 }
 
@@ -590,8 +594,8 @@ h1 span {
 
 .section {
   position: relative;
-  padding: 130px clamp(40px, 7vw, 118px) 40px clamp(44px, 6vw, 100px);
-  scroll-margin-top: 40px;
+  padding: clamp(68px, 6vh, 84px) clamp(40px, 7vw, 118px) 40px clamp(44px, 6vw, 100px);
+  scroll-margin-top: 20px;
 }
 
 .section-heading {
@@ -1157,8 +1161,10 @@ h1 span {
   }
 
   .section {
+    padding-top: 104px;
     padding-right: 52px;
     padding-left: 52px;
+    scroll-margin-top: 0;
   }
 
   .footer {
@@ -1283,7 +1289,7 @@ h1 span {
   }
 
   .section {
-    padding: 100px 22px 20px;
+    padding: 92px 22px 20px;
   }
 
   .section-heading {
