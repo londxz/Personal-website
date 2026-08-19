@@ -94,7 +94,7 @@ export default function SwimmingShark() {
             const bitingAction = mixer.clipAction(biting);
             let currentAction = swimmingAction;
             let biteInProgress = false;
-            let nextBiteAt = performance.now();
+            let nextBiteAt = performance.now() + 8_000;
 
             const playSwimming = () => {
               host.dataset.sharkAction = "swimming";
@@ -139,8 +139,9 @@ export default function SwimmingShark() {
                     playSwimming();
                     host.dataset.sharkBitePhase = "idle";
                     delete host.dataset.sharkTarget;
+                    delete host.dataset.sharkTargetDistance;
                     biteInProgress = false;
-                    nextBiteAt = performance.now() + 6_000;
+                    nextBiteAt = performance.now() + 12_000;
                   }, 760);
                 }, 650);
               }, 430);
@@ -165,14 +166,21 @@ export default function SwimmingShark() {
               )).filter((target) => !target.closest(".portrait-stage"));
               const target = targets.find((candidate) => {
                 const rect = candidate.getBoundingClientRect();
-                const closeOnX = mouthX >= rect.left - 16 && mouthX <= rect.right + 16;
+                const distanceToTarget = travelDirection === "right"
+                  ? rect.left - mouthX
+                  : mouthX - rect.right;
+                const targetIsAhead = distanceToTarget >= 26 && distanceToTarget <= 72;
                 const closeOnY = mouthY >= rect.top - 28 && mouthY <= rect.bottom + 28;
                 const mouthOnScreen = mouthX >= 0 && mouthX <= window.innerWidth;
                 const onScreen = rect.bottom > 0 && rect.top < window.innerHeight;
-                return closeOnX && closeOnY && mouthOnScreen && onScreen;
+                return targetIsAhead && closeOnY && mouthOnScreen && onScreen;
               });
 
               if (target) {
+                const targetRect = target.getBoundingClientRect();
+                const targetDistance = travelDirection === "right"
+                  ? targetRect.left - mouthX
+                  : mouthX - targetRect.right;
                 host.dataset.sharkTarget = target.classList.contains("sidebar")
                   ? "sidebar"
                   : target.classList.contains("glass-chip")
@@ -180,6 +188,7 @@ export default function SwimmingShark() {
                     : target.classList.contains("button-glass")
                       ? "button"
                       : "card";
+                host.dataset.sharkTargetDistance = targetDistance.toFixed(1);
                 playBite();
               }
             }, 120);
