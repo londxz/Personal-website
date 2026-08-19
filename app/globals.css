@@ -10,7 +10,7 @@
   --line: rgba(255, 255, 255, 0.14);
   --line-soft: rgba(255, 255, 255, 0.08);
   --shadow: rgba(0, 0, 0, 0.46);
-  --portrait-shadow: drop-shadow(0 26px 48px rgba(0, 0, 0, 0.72)) drop-shadow(0 0 3px rgba(0, 0, 0, 0.9));
+  --portrait-shadow: drop-shadow(0 16px 30px rgba(0, 0, 0, 0.18));
 }
 
 :root[data-theme="light"] {
@@ -21,7 +21,7 @@
   --line: rgba(17, 17, 15, 0.13);
   --line-soft: rgba(17, 17, 15, 0.075);
   --shadow: rgba(29, 29, 24, 0.16);
-  --portrait-shadow: drop-shadow(0 24px 42px rgba(20, 20, 16, 0.2)) drop-shadow(0 0 2px rgba(17, 17, 15, 0.32));
+  --portrait-shadow: drop-shadow(0 18px 34px rgba(20, 20, 16, 0.14));
   color-scheme: light;
 }
 
