@@ -99,7 +99,7 @@ export default function Portfolio() {
   }
 
   return (
-    <div className="site-shell" id="top" onPointerMove={handlePointerMove}>
+    <div className="site-shell" onPointerMove={handlePointerMove}>
       <div className="ambient ambient-one" aria-hidden="true" />
       <div className="ambient ambient-two" aria-hidden="true" />
       <div className="cursor-light" aria-hidden="true" />
@@ -160,7 +160,7 @@ export default function Portfolio() {
       </aside>
 
       <main className="main-content">
-        <section className="hero" data-section aria-labelledby="hero-title">
+        <section className="hero" id="top" data-section aria-labelledby="hero-title">
           <div className="hero-copy hero-enter">
             <p className="eyebrow">{copy.hero.eyebrow}</p>
             <h1 id="hero-title">

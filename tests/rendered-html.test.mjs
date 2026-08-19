@@ -32,5 +32,6 @@ test("server-renders the portfolio", async () => {
   assert.match(html, /londxz/);
   assert.match(html, /Родион/);
   assert.match(html, /iOS-разработчик/);
+  assert.match(html, /<section[^>]*id="top"[^>]*data-section/);
   assert.doesNotMatch(html, /codex-preview|loading skeleton/i);
 });
