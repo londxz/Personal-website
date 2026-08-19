@@ -89,9 +89,9 @@ export const content: Record<Language, SiteContent> = {
     ],
     availability: "Responsibility. Results.",
     hero: {
-      eyebrow: "iOS Developer · AI · Backend",
+      eyebrow: "iOS Developer · AI-powered mobile products",
       role: "Rodion Kholodov",
-      lead: "My core expertise is iOS development with Swift, UIKit and SwiftUI. I also explore AI and backend engineering with Go.",
+      lead: "My focus is iOS: Swift, UIKit and SwiftUI. I use AI in mobile development and grow at the intersection of iOS and AI; in my free time, I build backend projects with Go.",
       projects: "View projects",
       cv: "Download CV",
       nowLabel: "Now",
@@ -105,15 +105,15 @@ export const content: Record<Language, SiteContent> = {
     },
     about: {
       kicker: "About / 01",
-      title: "Strong iOS. Responsible ownership.",
+      title: "iOS first. AI where it adds value.",
       paragraphs: [
         "I am an iOS developer with strong mobile expertise. I take responsibility for my work and see it through to a result — from an idea and architecture to a feature shipped in the product.",
-        "Swift, UIKit and SwiftUI are my core stack. Alongside iOS, I explore AI and backend development with Go, expanding the range of problems I can solve.",
+        "iOS is my professional focus. I use AI to improve mobile products and engineering workflows, and I keep developing this expertise. Go backend is a personal direction I explore through side projects in my free time.",
         "At Yandex, I work with the Maps SDK team on AI-assisted test debugging and integration coverage. Before that, I built educational and research products at HSE and Lobachevsky University.",
       ],
       cards: [
         { value: "iOS", label: "Core expertise" },
-        { value: "Go", label: "Backend interest" },
+        { value: "AI", label: "For mobile products" },
         { value: "Result", label: "Main priority" },
       ],
     },
@@ -161,14 +161,14 @@ export const content: Record<Language, SiteContent> = {
     },
     skills: {
       kicker: "Skills / 03",
-      title: "iOS at the core. AI and Go in progress.",
-      intro: "A strong mobile stack plus the technologies I am actively exploring beyond it.",
+      title: "iOS at the core. AI for mobile. Go on the side.",
+      intro: "Swift, UIKit and SwiftUI form my professional foundation. I apply AI to mobile tasks and explore Go through personal backend projects.",
       groups: [
         { title: "iOS", items: ["Swift", "UIKit", "SwiftUI", "Combine", "Core Data", "AVFoundation"] },
         { title: "Architecture", items: ["MVVM", "MVC", "MVP", "VIPER", "SOLID", "Coordinator", "DI"] },
         { title: "Quality", items: ["XCTest", "XCUITest", "Snapshot", "TDD", "Fastlane", "SwiftLint"] },
         { title: "Platform", items: ["Swift Concurrency", "GCD", "REST API", "Firebase", "Supabase", "Keychain"] },
-        { title: "Backend & AI", items: ["Go", "Python", "AI agents", "MCP", "Codex", "REST API", "PostgreSQL"] },
+        { title: "AI for iOS · Go side projects", items: ["AI agents", "Core ML", "Python", "MCP", "Go", "PostgreSQL"] },
       ],
     },
     projects: {
@@ -214,7 +214,7 @@ export const content: Record<Language, SiteContent> = {
     contact: {
       kicker: "Contact / 05",
       title: "Have a product worth caring about?",
-      body: "I am open to strong teams and products where ownership, engineering quality and a real result matter.",
+      body: "I am open to strong iOS teams and mobile products where AI can create real value — and where ownership, engineering quality and outcomes matter.",
       copy: "Copy email",
       copied: "Copied!",
       cv: "Open CV",
@@ -232,9 +232,9 @@ export const content: Record<Language, SiteContent> = {
     ],
     availability: "Ответственность. Результат.",
     hero: {
-      eyebrow: "iOS-разработчик · AI · Backend",
+      eyebrow: "iOS-разработчик · AI в мобильных продуктах",
       role: "Родион Холодов",
-      lead: "Моя основная экспертиза — iOS-разработка на Swift, UIKit и SwiftUI. Также увлекаюсь AI и backend-разработкой на Go.",
+      lead: "Мой главный фокус — iOS: Swift, UIKit и SwiftUI. Использую AI в мобильной разработке и развиваюсь на стыке iOS и AI; в свободное время пишу backend на Go.",
       projects: "Смотреть проекты",
       cv: "Скачать резюме",
       nowLabel: "Сейчас",
@@ -248,15 +248,15 @@ export const content: Record<Language, SiteContent> = {
     },
     about: {
       kicker: "Обо мне / 01",
-      title: "Сильный iOS. Ответственный подход.",
+      title: "iOS — основной фокус. AI — усиление продукта.",
       paragraphs: [
         "Я iOS-разработчик с сильной мобильной экспертизой. Беру ответственность за задачи и довожу их до результата — от идеи и архитектуры до готовой функции в продукте.",
-        "Мой основной стек — Swift, UIKit и SwiftUI. Параллельно развиваюсь в AI и backend-разработке на Go, чтобы решать более широкий круг продуктовых задач.",
+        "iOS — мой профессиональный фокус. Применяю AI в мобильных продуктах и инженерных процессах и продолжаю развивать эту экспертизу. Backend на Go — отдельное направление для собственных проектов в свободное время.",
         "В Яндексе работаю с командой SDK Карт над AI-автоматизацией разбора тестов и интеграционным покрытием. Ранее создавал образовательные и исследовательские продукты в НИУ ВШЭ и ННГУ.",
       ],
       cards: [
         { value: "iOS", label: "Основная экспертиза" },
-        { value: "Go", label: "Интерес к backend" },
+        { value: "AI", label: "Для мобильных продуктов" },
         { value: "Результат", label: "Главный приоритет" },
       ],
     },
@@ -304,14 +304,14 @@ export const content: Record<Language, SiteContent> = {
     },
     skills: {
       kicker: "Навыки / 03",
-      title: "iOS — основа. AI и Go — развитие.",
-      intro: "Сильный мобильный стек и технологии, которые я активно осваиваю за его пределами.",
+      title: "iOS — основа. AI — для мобильных продуктов. Go — для своих проектов.",
+      intro: "Swift, UIKit и SwiftUI — моя профессиональная база. AI применяю в мобильных задачах, а Go изучаю через собственные backend-проекты.",
       groups: [
         { title: "iOS", items: ["Swift", "UIKit", "SwiftUI", "Combine", "Core Data", "AVFoundation"] },
         { title: "Архитектура", items: ["MVVM", "MVC", "MVP", "VIPER", "SOLID", "Coordinator", "DI"] },
         { title: "Качество", items: ["XCTest", "XCUITest", "Snapshot", "TDD", "Fastlane", "SwiftLint"] },
         { title: "Платформа", items: ["Swift Concurrency", "GCD", "REST API", "Firebase", "Supabase", "Keychain"] },
-        { title: "Backend и AI", items: ["Go", "Python", "AI-агенты", "MCP", "Codex", "REST API", "PostgreSQL"] },
+        { title: "AI для iOS · Go pet-проекты", items: ["AI-агенты", "Core ML", "Python", "MCP", "Go", "PostgreSQL"] },
       ],
     },
     projects: {
@@ -357,7 +357,7 @@ export const content: Record<Language, SiteContent> = {
     contact: {
       kicker: "Контакты / 05",
       title: "Есть продукт, о котором хочется заботиться?",
-      body: "Открыт к сильным командам и продуктам, где ценятся ответственность, инженерное качество и реальный результат.",
+      body: "Открыт к сильным iOS-командам и мобильным продуктам, где AI приносит реальную пользу, а ответственность, инженерное качество и результат действительно важны.",
       copy: "Скопировать email",
       copied: "Скопировано!",
       cv: "Открыть резюме",

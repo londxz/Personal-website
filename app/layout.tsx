@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://londxz.dev"),
   title: "Родион Холодов — iOS-разработчик",
   description:
-    "Портфолио Родиона Холодова — iOS-разработчика с сильной мобильной экспертизой и интересом к AI и backend-разработке на Go.",
+    "Портфолио Родиона Холодова — iOS-разработчика, который применяет AI в мобильных продуктах и в свободное время развивает backend на Go.",
   keywords: ["Родион Холодов", "londxz", "iOS-разработчик", "Swift", "SwiftUI", "UIKit", "Go", "AI"],
   authors: [{ name: "Rodion Kholodov", url: "https://londxz.dev" }],
   alternates: {
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Родион Холодов — iOS-разработчик",
-    description: "Сильная iOS-разработка на Swift, UIKit и SwiftUI. Интерес к AI и backend на Go.",
+    description: "iOS — основной фокус. AI в мобильной разработке. Go — для собственных backend-проектов.",
     url: "https://londxz.dev",
     siteName: "londxz",
     type: "website",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Родион Холодов — iOS-разработчик",
-    description: "Сильная iOS-разработка на Swift, UIKit и SwiftUI. Интерес к AI и backend на Go.",
+    description: "iOS — основной фокус. AI в мобильной разработке. Go — для собственных backend-проектов.",
     images: ["/og.png"],
   },
   icons: {
