@@ -344,7 +344,7 @@ export default function Portfolio() {
 
         <footer className="footer">
           <span>© {new Date().getFullYear()} Rodion Kholodov</span>
-          <a className="footer-cta" href={`mailto:${contactLinks.email}`}>{copy.footer}</a>
+          <span>{copy.footer}</span>
           <a href="#top">{language === "ru" ? "Наверх" : "Back to top"} ↑</a>
         </footer>
       </main>
