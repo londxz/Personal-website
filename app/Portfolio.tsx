@@ -186,8 +186,8 @@ export default function Portfolio() {
                 <strong>{copy.hero.nowValue}</strong>
               </div>
               <div className="glass-chip">
-                <span className="chip-label">{copy.hero.workExperienceLabel}</span>
-                <strong>{copy.hero.workExperienceValue}</strong>
+                <span className="chip-label">{copy.hero.ownProjectsLabel}</span>
+                <strong>{copy.hero.ownProjectsValue}</strong>
               </div>
             </div>
           </div>

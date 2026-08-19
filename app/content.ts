@@ -34,8 +34,8 @@ export type SiteContent = {
     cv: string;
     nowLabel: string;
     nowValue: string;
-    workExperienceLabel: string;
-    workExperienceValue: string;
+    ownProjectsLabel: string;
+    ownProjectsValue: string;
     experienceLabel: string;
     experienceValue: string;
     focusLabel: string;
@@ -96,8 +96,8 @@ export const content: Record<Language, SiteContent> = {
       cv: "Download CV",
       nowLabel: "Now",
       nowValue: "Yandex · iOS",
-      workExperienceLabel: "Work experience",
-      workExperienceValue: "2024 — present",
+      ownProjectsLabel: "Own projects",
+      ownProjectsValue: "4 public products",
       experienceLabel: "Experience",
       experienceValue: "iOS · AI",
       focusLabel: "Priority",
@@ -174,7 +174,7 @@ export const content: Record<Language, SiteContent> = {
     projects: {
       kicker: "Own projects / 04",
       title: "Products built to be used.",
-      intro: "My public projects in speech technology, communication, research and logistics — separate from commercial work.",
+      intro: "Four public products where I turn a problem into a working solution — from product thinking and architecture to implementation and source code.",
       source: "View source",
       items: [
         {
@@ -239,8 +239,8 @@ export const content: Record<Language, SiteContent> = {
       cv: "Скачать резюме",
       nowLabel: "Сейчас",
       nowValue: "Яндекс · iOS",
-      workExperienceLabel: "Опыт работы",
-      workExperienceValue: "2024 — сейчас",
+      ownProjectsLabel: "Собственные проекты",
+      ownProjectsValue: "4 публичных продукта",
       experienceLabel: "Опыт",
       experienceValue: "iOS · AI",
       focusLabel: "Приоритет",
@@ -317,7 +317,7 @@ export const content: Record<Language, SiteContent> = {
     projects: {
       kicker: "Собственные проекты / 04",
       title: "Продукты, которыми можно пользоваться.",
-      intro: "Мои публичные проекты на пересечении speech-технологий, коммуникаций, исследований и логистики — отдельно от коммерческой работы.",
+      intro: "Четыре публичных продукта, в которых я сам превращаю проблему в работающее решение — от продуктовой идеи и архитектуры до реализации и открытого кода.",
       source: "Открыть код",
       items: [
         {

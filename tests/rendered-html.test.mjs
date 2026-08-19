@@ -36,6 +36,8 @@ test("server-renders the portfolio", async () => {
   assert.match(html, /Опыт работы/);
   assert.match(html, /Коммерческий опыт/);
   assert.match(html, /Собственные проекты/);
+  assert.match(html, /4 публичных продукта/);
+  assert.doesNotMatch(html, /2024 — сейчас/);
   assert.match(html, /href="#experience"/);
   assert.doesNotMatch(html, /Москва, Россия/);
   assert.doesNotMatch(html, /iOS · AI · Go/);
