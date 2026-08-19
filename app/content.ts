@@ -362,7 +362,7 @@ export const content: Record<Language, SiteContent> = {
       copied: "Скопировано!",
       cv: "Открыть резюме",
     },
-    footer: "Понравился сайт? Напиши мне — сделаю и тебе.",
+    footer: "Понравился сайт? Пиши мне, тоже сделаю.",
   },
 };
 
