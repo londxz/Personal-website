@@ -1267,29 +1267,68 @@ h1 span {
 
   .hero {
     grid-template-columns: 1fr;
-    gap: 56px;
-    padding: 126px 22px 70px;
+    gap: 40px;
+    padding: 116px 18px 30px;
+  }
+
+  .hero-copy {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .eyebrow {
+    margin-bottom: 18px;
+    font-size: 0.66rem;
+    line-height: 1.55;
   }
 
   h1 {
-    font-size: clamp(4.1rem, 19vw, 6.2rem);
+    max-width: 100%;
+    font-size: clamp(3.55rem, 17vw, 4.75rem);
+    line-height: 0.88;
+  }
+
+  .hero-lead {
+    max-width: 100%;
+    margin-top: 26px;
+    font-size: 1rem;
+    line-height: 1.58;
+    overflow-wrap: anywhere;
+  }
+
+  .hero-actions {
+    margin-top: 28px;
+  }
+
+  .hero-facts {
+    margin-top: 24px;
   }
 
   .portrait-stage {
-    width: min(100vw, 520px);
-    margin-left: -4vw;
+    width: min(100%, 430px);
+    margin: 0 auto;
+  }
+
+  .portrait-frame {
+    aspect-ratio: 1.06;
+  }
+
+  .portrait-frame img {
+    transform: scale(0.98);
   }
 
   .badge-top {
-    right: -4%;
+    top: 5%;
+    right: 0;
   }
 
   .badge-bottom {
-    left: -4%;
+    bottom: 7%;
+    left: 0;
   }
 
   .section {
-    padding: 92px 22px 20px;
+    padding: 76px 18px 20px;
   }
 
   .section-heading {
@@ -1363,6 +1402,8 @@ h1 span {
   .hero-actions,
   .hero-facts {
     display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
   }
 
   .button,
@@ -1370,9 +1411,45 @@ h1 span {
     width: 100%;
   }
 
+  .button {
+    min-height: 50px;
+    gap: 10px;
+    border-radius: 16px;
+    padding: 0 12px;
+    font-size: 0.7rem;
+    white-space: nowrap;
+  }
+
+  .glass-chip {
+    min-width: 0;
+    min-height: 76px;
+    align-content: center;
+    padding: 11px 12px;
+  }
+
+  .chip-label {
+    font-size: 0.5rem;
+    line-height: 1.35;
+  }
+
+  .glass-chip strong {
+    font-size: 0.66rem;
+    line-height: 1.35;
+  }
+
   .floating-badge {
-    min-width: 152px;
-    padding: 14px 16px;
+    min-width: 138px;
+    gap: 6px;
+    border-radius: 21px;
+    padding: 13px 15px;
+  }
+
+  .floating-badge span {
+    font-size: 0.56rem;
+  }
+
+  .floating-badge strong {
+    font-size: 0.78rem;
   }
 
   .stat-grid {
